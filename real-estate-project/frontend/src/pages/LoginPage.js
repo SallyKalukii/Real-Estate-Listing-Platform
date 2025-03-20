@@ -1,31 +1,27 @@
 import React, { useState } from 'react';
-import AuthForm from '../components/AuthForm';
-import { loginUser } from '../services/authService';
 
-const LoginPage = () => {
-  const [formData, setFormData] = useState({ email: '', password: '' });
+function LoginPage() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleLogin = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const response = await loginUser(formData);
-      console.log('Login successful:', response);
-      // Redirect or update auth context
-    } catch (error) {
-      console.error('Login failed:', error.message);
-    }
+    console.log('Login submitted:', { email, password });
+    // You can add backend API call here
   };
 
   return (
     <div>
-      <AuthForm
-        onSubmit={handleLogin}
-        formType="login"
-        formData={formData}
-        setFormData={setFormData}
-      />
+      <h2>Login</h2>
+      <form onSubmit={handleSubmit}>
+        <input type="email" placeholder="Email" value={email}
+               onChange={(e) => setEmail(e.target.value)} required />
+        <input type="password" placeholder="Password" value={password}
+               onChange={(e) => setPassword(e.target.value)} required />
+        <button type="submit">Login</button>
+      </form>
     </div>
   );
-};
+}
 
 export default LoginPage;

@@ -1,31 +1,27 @@
 import React, { useState } from 'react';
-import AuthForm from '../components/AuthForm';
-import { registerUser } from '../services/authService';
 
-const RegisterPage = () => {
-  const [formData, setFormData] = useState({ email: '', password: '' });
+function RegisterPage() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleRegister = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const response = await registerUser(formData);
-      console.log('Registration successful:', response);
-      // Redirect or notify user
-    } catch (error) {
-      console.error('Registration failed:', error.message);
-    }
+    console.log('Registration submitted:', { email, password });
+    // You can add backend API call here
   };
 
   return (
     <div>
-      <AuthForm
-        onSubmit={handleRegister}
-        formType="register"
-        formData={formData}
-        setFormData={setFormData}
-      />
+      <h2>Register</h2>
+      <form onSubmit={handleSubmit}>
+        <input type="email" placeholder="Email" value={email}
+               onChange={(e) => setEmail(e.target.value)} required />
+        <input type="password" placeholder="Password" value={password}
+               onChange={(e) => setPassword(e.target.value)} required />
+        <button type="submit">Register</button>
+      </form>
     </div>
   );
-};
+}
 
 export default RegisterPage;
