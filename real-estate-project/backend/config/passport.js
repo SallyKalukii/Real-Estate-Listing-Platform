@@ -39,31 +39,31 @@ passport.use(
   )
 );
 
-passport.use(
-  new GoogleStrategy(
-      {
-          clientID: process.env.GOOGLE_CLIENT_ID,
-          clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-          callbackURL: '/auth/google/callback',
-      },
-      async (accessToken, refreshToken, profile, done) => {
-          try {
-              // Find or create user in the database
-              let user = await User.findByGoogleId(profile.id);
-              if (!user) {
-                  user = await User.create(
-                      profile.id,
-                      profile.emails[0].value,
-                      profile.displayName
-                  );
-              }
-              done(null, user);
-          } catch (err) {
-              done(err, null);
-          }
-      }
-  )
-);
+// passport.use(
+//   new GoogleStrategy(
+//       {
+//           clientID: process.env.GOOGLE_CLIENT_ID,
+//           clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+//           callbackURL: '/auth/google/callback',
+//       },
+//       async (accessToken, refreshToken, profile, done) => {
+//           try {
+//               // Find or create user in the database
+//               let user = await User.findByGoogleId(profile.id);
+//               if (!user) {
+//                   user = await User.create(
+//                       profile.id,
+//                       profile.emails[0].value,
+//                       profile.displayName
+//                   );
+//               }
+//               done(null, user);
+//           } catch (err) {
+//               done(err, null);
+//           }
+//       }
+//   )
+// );
 
 passport.serializeUser((user, done) => {
   done(null, user.id);

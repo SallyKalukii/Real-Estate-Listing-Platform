@@ -14,7 +14,13 @@ const PORT = process.env.PORT || 5000;
 pool.connect();
 
 app.use(express.json());
-app.use(cors());
+
+
+app.use(cors({
+  origin: 'http://localhost:3000',  // Allow frontend port
+  credentials: true                 // Allow cookies/session
+}));
+
 
 app.use(session({
   secret: process.env.GOOGLE_CLIENT_SECRET,
