@@ -12,11 +12,11 @@ router.get('/google/callback',
   }
 );
 
-router.get('/login', (req, res) => {
+router.get('/api/login', (req, res) => {
   res.send('Please log in. <a href="/auth/google">Login with Google</a>');
 })
 
-router.get('/logout', (req, res) => {
+router.post('/api/logout', (req, res) => {
   req.logout((err) => {
     if (err) {
       console.error('Logout error:', err);

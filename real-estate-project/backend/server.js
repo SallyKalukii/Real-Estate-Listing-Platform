@@ -33,6 +33,6 @@ app.use(passport.session());
 
 app.get('/', (req, res) => res.send('Welcome to the Real Estate App Backend'));
 app.use('/auth', authRoutes);
-app.use('/user', userRoutes);
+app.use(userRoutes);
 
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
