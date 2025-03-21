@@ -1,6 +1,8 @@
 const express = require('express');
 const passport = require('passport');
 const router = express.Router();
+const pool = require('../config/db');
+const bcrypt = require('bcrypt');
 
 router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
@@ -13,7 +15,11 @@ router.get('/google/callback',
 );
 
 router.get('/api/login', (req, res) => {
-  res.send('Please log in. <a href="/auth/google">Login with Google</a>');
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return res.status(400).send('Email and password are required');
+  }
+  
 })
 
 router.post('/api/logout', (req, res) => {
