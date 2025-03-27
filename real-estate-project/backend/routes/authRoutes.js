@@ -26,7 +26,7 @@ router.post("/api/register", async (req, res) => {
   const domain = email.split("@")[1];
   dns.resolveMx(domain, async (err, addresses) => {
     if (err || addresses.length === 0) {
-      return res.status(400).send("Invalid email domain");
+      return res.status(400).json({ message: "Invalid email domain" });
     }
 
     try {
@@ -36,7 +36,7 @@ router.post("/api/register", async (req, res) => {
         [email]
       );
       if (existingUser.rows.length > 0) {
-        return res.status(400).send("User already exists");
+        return res.status(400).json({ message: "User already exists" });
       }
 
       // Hash the password
@@ -51,7 +51,7 @@ router.post("/api/register", async (req, res) => {
       res.status(201).json(newUser.rows[0]); // Created status code
     } catch (err) {
       console.error("Registration error:", err);
-      res.status(500).send("Server error");
+      res.status(500).json({ message: "Server error" });
     }
   });
 });

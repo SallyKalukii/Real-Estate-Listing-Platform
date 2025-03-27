@@ -1,7 +1,7 @@
 const BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 export const loginUser = async (credentials) => {
-    const response = await fetch(`${BASE_URL}/auth/login`, {
+    const response = await fetch(`${BASE_URL}/auth/api/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -19,7 +19,7 @@ export const loginUser = async (credentials) => {
 };
 
 export const registerUser = async (userData) => {
-    const response = await fetch(`${BASE_URL}/auth/register`, {
+    const response = await fetch(`${BASE_URL}/auth/api/register`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
