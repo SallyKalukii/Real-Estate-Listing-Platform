@@ -33,7 +33,7 @@ function RegisterPage() {
 
     try {
       const user = await registerUser({ email, password });
-      setSuccess(`Account created for ${user.email}!`);
+      setSuccess(`Account created Successfully!`);
       setError('');
       console.log('Registration successful:', user);
     } catch (err) {

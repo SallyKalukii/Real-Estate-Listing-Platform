@@ -13,7 +13,7 @@ function LoginPage() {
     e.preventDefault();
     try {
       const user = await loginUser({ email, password });
-      setSuccess(`Welcome back, ${user.email}!`);
+      setSuccess(`Login Successful!`);
       setError('');
       console.log('Login successful:', user);
 
