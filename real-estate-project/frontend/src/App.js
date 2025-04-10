@@ -4,6 +4,9 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import LandingPage from './pages/LandingPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import PropertyType from './pages/PropertyType';
+import PropertyManagement from './pages/PropertyManagement';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 function App() {
   return (
@@ -18,13 +21,23 @@ function App() {
         </div>
       </nav>
 
+      <nav style={{ padding: '20px', background: '#f0f0f0' }}>
+        <Link to="/PropertyType" style={{ marginRight: '15px' }}>
+          View Property Type Page
+        </Link>
+      </nav>
+
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/" element={<LandingPage />} />
+        <Route path="/PropertyType" element={<PropertyType />} />
+        <Route path="/property-management" element={<PropertyManagement />} />
       </Routes>
+      
     </Router>
   );
 }
 
 export default App;
+
