@@ -12,7 +12,7 @@ function LandingPage() {
         className="background-video"
       >
         <source 
-          src="/assets/landing.mp4" 
+          src="/assets/landing.mp4"
           type="video/mp4" 
         />
         Your browser does not support the video tag.
